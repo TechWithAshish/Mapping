@@ -1,4 +1,4 @@
-package com.example.mapping.Entity.Account;
+package com.example.mapping.Enum;
 
 public enum AccountType {
     SAVING,

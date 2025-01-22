@@ -1,4 +1,4 @@
-package com.example.mapping.Entity.Card;
+package com.example.mapping.Enum;
 
 public enum CardType {
     CREDIT,
