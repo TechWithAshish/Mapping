@@ -25,7 +25,7 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.AUTO)
     public int accountId;
     public int balance;
-    public boolean isActive;
+    public boolean active;
     @ManyToOne
     @JoinColumn(name = "customer_Id")
     @JsonIgnore

@@ -1,20 +1,15 @@
 package com.example.mapping.Controller;
 
 
-import com.example.mapping.DTO.AccountDto;
-import com.example.mapping.DTO.CardDto;
-import com.example.mapping.DTO.CustomerDto;
-import com.example.mapping.DTO.DebitCardDto;
+import com.example.mapping.DTO.*;
 import com.example.mapping.Entity.Account.Account;
 import com.example.mapping.Entity.Card.CreditCard;
 import com.example.mapping.Entity.Card.DebitCard;
 import com.example.mapping.Entity.Customer.Customer;
+import com.example.mapping.Entity.Transaction.Transaction;
 import com.example.mapping.Enum.CardType;
 import com.example.mapping.Repository.CustomerRepository;
-import com.example.mapping.Service.AccountService;
-import com.example.mapping.Service.CreditCardService;
-import com.example.mapping.Service.CustomerService;
-import com.example.mapping.Service.DebitCardService;
+import com.example.mapping.Service.*;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -33,6 +28,8 @@ public class BankController {
     private CreditCardService creditCardService;
     @Autowired
     private DebitCardService debitCardService;
+    @Autowired
+    private TransactionService transactionService;
 
     @PostMapping("/create-customer")
     public ResponseEntity<Customer> createCustomer(@RequestBody CustomerDto customerDto){
@@ -58,6 +55,11 @@ public class BankController {
 
     }
 
+    @PostMapping("/create-transaction")
+    public ResponseEntity<Transaction> createTransaction(@RequestBody TransactionDto transactionDto){
+        Transaction transaction = transactionService.createTransaction(transactionDto);
+        return new ResponseEntity<>(transaction, HttpStatus.CREATED);
+    }
 
     @GetMapping("/customer")
     public ResponseEntity<Customer> getCustomerById(@RequestParam("customerId") int customerId){
@@ -81,5 +83,23 @@ public class BankController {
     public ResponseEntity<DebitCard> getDebitCard(@RequestParam("debitCardId") int debitCardId){
         DebitCard debitCardById = debitCardService.getDebitCardById(debitCardId);
         return new ResponseEntity<>(debitCardById, HttpStatus.OK);
+    }
+
+    @GetMapping("/transaction")
+    public ResponseEntity<Transaction> getTransaction(@RequestParam("transactionId") int transactionId){
+        Transaction transaction = transactionService.getTransaction(transactionId);
+        return new ResponseEntity<>(transaction, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/debit-card")
+    public ResponseEntity<String> deleteDebitCard(@RequestParam("debitCardId") int debitCardId){
+        debitCardService.deleteDebitCard(debitCardId);
+        return new ResponseEntity<>("Deleted Debit Card", HttpStatus.OK);
+    }
+
+    @DeleteMapping("/credit-card")
+    public ResponseEntity<String> deleteCreditCard(@RequestParam("creditCardId") int creditCardId){
+        creditCardService.deleteCreditCard(creditCardId);
+        return new ResponseEntity<>("Deleted Credit Card", HttpStatus.OK);
     }
 }

@@ -3,6 +3,7 @@ package com.example.mapping;
 
 import com.example.mapping.Entity.Customer.Customer;
 import com.example.mapping.Repository.CustomerRepository;
+import com.example.mapping.Repository.TransactionRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -16,6 +17,8 @@ import java.util.logging.Logger;
 public class CustomerTest {
     @Autowired
     public CustomerRepository customerRepository;
+    @Autowired
+    public TransactionRepository transactionRepository;
 
     @Test
     public void checkCustomer(){
@@ -30,6 +33,14 @@ public class CustomerTest {
         Assertions.assertEquals(savedCustomer.getAccounts().size(), 0);
         Assertions.assertEquals(savedCustomer.getLoanAccounts().size(), 0);
         Assertions.assertEquals(savedCustomer.getCustomerId(), 1);
+
+    }
+
+    @Test
+    public void deleteTransaction(){
+
+
+        transactionRepository.deleteById(1);
 
     }
 }

@@ -19,7 +19,7 @@ public class DebitCard{
     @GeneratedValue(strategy = GenerationType.AUTO)
     public int debitCardId;
     public String name;
-    public CardSubType cardSubType;
+    public String cardSubType;
     public LocalDate expiryDate;
     @OneToOne
     @JoinColumn(name = "account_Id")

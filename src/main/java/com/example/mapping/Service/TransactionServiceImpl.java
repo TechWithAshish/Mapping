@@ -20,7 +20,7 @@ public class TransactionServiceImpl implements TransactionService{
         Account accountById = accountService.getAccountById(transactionDto.getAccountId());
         Transaction transaction = new Transaction();
         transaction.setAccount(accountById);
-        transaction.setAmount(100);
+        transaction.setAmount(transactionDto.getAmount());
         transaction.setType(transactionDto.getTransactionType().toString());
         // let me add transaction to my list of account
         accountById.getTransactionList().add(transaction);

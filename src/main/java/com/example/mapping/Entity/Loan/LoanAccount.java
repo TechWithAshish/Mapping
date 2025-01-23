@@ -16,7 +16,7 @@ public class LoanAccount{
     @GeneratedValue(strategy = GenerationType.AUTO)
     public int loanAccountId;
     public long loanAmount;
-    public boolean isActive;
+    public boolean active;
     @ManyToOne
     @JoinColumn(name = "customer_id")
     public Customer customer;
