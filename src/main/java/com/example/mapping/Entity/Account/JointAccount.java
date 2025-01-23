@@ -1,22 +1,24 @@
 package com.example.mapping.Entity.Account;
 
-import com.example.mapping.Entity.Transaction.Transaction;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class JointAccount{
+@Setter
+@Getter
+@ToString
+public class JointAccount {
     @Id
     public int accountId;
     @OneToOne
     @MapsId
     @JoinColumn(name = "account_id")
+    @JsonIgnore
     public Account account;
     public double interestRate;
 }

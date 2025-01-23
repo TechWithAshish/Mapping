@@ -1,4 +1,10 @@
 package com.example.mapping.Service;
 
-public class CreditCardService {
+import com.example.mapping.DTO.CardDto;
+import com.example.mapping.Entity.Card.CreditCard;
+
+public interface CreditCardService {
+    public CreditCard createCreditCard(CardDto cardDto);
+    public CreditCard getCreditCard(int id);
+    public void deleteCreditCard(int id);
 }

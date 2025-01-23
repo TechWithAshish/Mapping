@@ -4,10 +4,10 @@ package com.example.mapping.Entity.Account;
 import com.example.mapping.Entity.Card.DebitCard;
 import com.example.mapping.Entity.Customer.Customer;
 import com.example.mapping.Entity.Transaction.Transaction;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +16,10 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@Getter
+@Setter
+@ToString
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,6 +28,7 @@ public class Account {
     public boolean isActive;
     @ManyToOne
     @JoinColumn(name = "customer_Id")
+    @JsonIgnore
     public Customer customer;
     @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
     public List<Transaction> transactionList = new ArrayList<>();

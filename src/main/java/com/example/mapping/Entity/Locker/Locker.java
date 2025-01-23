@@ -2,9 +2,7 @@ package com.example.mapping.Entity.Locker;
 
 import com.example.mapping.Entity.Customer.Customer;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +11,9 @@ import java.util.List;
 //@Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
+@ToString
 public class Locker {
 //    @Id
 //    @GeneratedValue(strategy = GenerationType.AUTO)

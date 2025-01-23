@@ -1,14 +1,15 @@
 package com.example.mapping.Entity.Customer;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
+@ToString
 public class Address {
 
     @Id
@@ -17,6 +18,7 @@ public class Address {
     public String address;
     @ManyToOne
     @JoinColumn(name = "customer_Id")
+    @JsonIgnore
     public Customer customer;
 
 }

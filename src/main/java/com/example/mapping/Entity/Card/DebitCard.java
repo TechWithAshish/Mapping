@@ -2,25 +2,27 @@ package com.example.mapping.Entity.Card;
 
 import com.example.mapping.Entity.Account.Account;
 import com.example.mapping.Enum.CardSubType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Setter
+@Getter
+@ToString
 public class DebitCard{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public int debitCard;
+    public int debitCardId;
     public String name;
     public CardSubType cardSubType;
     public LocalDate expiryDate;
     @OneToOne
     @JoinColumn(name = "account_Id")
+    @JsonIgnore
     public Account account;
 }

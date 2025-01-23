@@ -7,17 +7,20 @@ import com.example.mapping.Entity.Account.SavingAccount;
 import com.example.mapping.Entity.Card.CreditCard;
 import com.example.mapping.Entity.Loan.LoanAccount;
 import com.example.mapping.Entity.Locker.Locker;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
+@Setter
+@Getter
+@ToString
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -33,6 +36,4 @@ public class Customer {
     List<CreditCard> creditCards = new ArrayList<>();
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     List<LoanAccount> loanAccounts = new ArrayList<>();
-//    @ManyToMany(mappedBy = "customerList", cascade = CascadeType.ALL)
-//    List<Locker> lockerList = new ArrayList<>();
 }

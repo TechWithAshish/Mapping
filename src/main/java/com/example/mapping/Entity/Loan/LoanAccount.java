@@ -1,19 +1,16 @@
 package com.example.mapping.Entity.Loan;
 
 import com.example.mapping.Entity.Customer.Customer;
-import com.example.mapping.Entity.Transaction.Transaction;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
+@ToString
 public class LoanAccount{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
