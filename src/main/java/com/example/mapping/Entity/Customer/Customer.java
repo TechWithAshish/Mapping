@@ -12,7 +12,10 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 @Setter
 @Getter
 @ToString
@@ -36,4 +39,6 @@ public class Customer {
     List<CreditCard> creditCards = new ArrayList<>();
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     List<LoanAccount> loanAccounts = new ArrayList<>();
+    @ManyToMany(mappedBy = "customerList", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    Set<Locker> lockerList = new HashSet<>();
 }

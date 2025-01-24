@@ -3,11 +3,14 @@ package com.example.mapping.Service;
 import com.example.mapping.DTO.CustomerDto;
 import com.example.mapping.Entity.Customer.Address;
 import com.example.mapping.Entity.Customer.Customer;
+import com.example.mapping.Entity.Locker.Locker;
 import com.example.mapping.Repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
+
 @Service
 public class CustomerServiceImpl implements CustomerService{
 
@@ -39,7 +42,13 @@ public class CustomerServiceImpl implements CustomerService{
 
     @Override
     public void deleteCustomer(int customerId) {
-        customerRepository.deleteById(customerId);
+        Customer customer = getCustomerById(customerId);
+        Set<Locker> lockerList = customer.getLockerList();
+        for(Locker locker : lockerList){
+            locker.getCustomerList().remove(customer);
+        }
+        lockerList.clear();
+        customerRepository.delete(customer);
     }
 
     @Override

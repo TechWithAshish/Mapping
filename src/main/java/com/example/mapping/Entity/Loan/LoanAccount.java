@@ -1,6 +1,7 @@
 package com.example.mapping.Entity.Loan;
 
 import com.example.mapping.Entity.Customer.Customer;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -19,5 +20,6 @@ public class LoanAccount{
     public boolean active;
     @ManyToOne
     @JoinColumn(name = "customer_id")
+    @JsonIgnore
     public Customer customer;
 }
