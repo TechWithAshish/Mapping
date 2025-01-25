@@ -34,7 +34,7 @@ public class LockerServiceImpl implements LockerService{
     public Locker assignLockerToCustomer(LockerDto lockerDto) {
         Locker locker = lockerRepository.findById(lockerDto.getLockerId()).orElseThrow(() ->
                 new RuntimeException("No Locker found"));
-        Customer customer = customerService.getCustomerById(lockerDto.getCustomerId());
+        Customer customer = customerService.getCustomerById(lockerDto.getCustomerId(), true, false);
 
         customer.getLockerList().add(locker);
         locker.getCustomerList().add(customer);
@@ -45,7 +45,7 @@ public class LockerServiceImpl implements LockerService{
     public Locker withHoldLockerToCustomer(LockerDto lockerDto) {
         Locker locker = lockerRepository.findById(lockerDto.getLockerId()).orElseThrow(() ->
                 new RuntimeException("No Locker found"));
-        Customer customer = customerService.getCustomerById(lockerDto.getCustomerId());
+        Customer customer = customerService.getCustomerById(lockerDto.getCustomerId(), true, false);
         Set<Customer> customerList = locker.getCustomerList();
         Set<Locker> lockerList = customer.getLockerList();
 

@@ -18,7 +18,7 @@ public class LoanAccountServiceImpl implements LoanAccountService{
 
     @Override
     public LoanAccount createLoanAccount(AccountDto account) {
-        Customer customerById = customerService.getCustomerById(account.getCustomerId());
+        Customer customerById = customerService.getCustomerById(account.getCustomerId(), false, false);
         LoanAccount loanAccount = new LoanAccount();
         loanAccount.setLoanAmount(account.getBalance());
         loanAccount.setActive(true);

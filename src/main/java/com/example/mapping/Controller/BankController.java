@@ -85,8 +85,8 @@ public class BankController {
     }
 
     @GetMapping("/customer")
-    public ResponseEntity<Customer> getCustomerById(@RequestParam("customerId") int customerId){
-        Customer customerById = customerService.getCustomerById(customerId);
+    public ResponseEntity<Customer> getCustomerById(@RequestParam("customerId") int customerId, @RequestParam("isLocker") boolean isLocker, @RequestParam("isAccount") boolean isAccount){
+        Customer customerById = customerService.getCustomerById(customerId, isLocker, isAccount);
         return new ResponseEntity<>(customerById, HttpStatus.OK);
     }
 

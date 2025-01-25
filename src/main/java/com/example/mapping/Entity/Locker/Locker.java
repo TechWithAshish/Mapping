@@ -16,14 +16,14 @@ import java.util.Set;
 @NoArgsConstructor
 @Getter
 @Setter
-@ToString
+@ToString(exclude = {"customerList"})
 public class Locker {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public int lockerId;
     // one locker can have multiple customer so there will be N:M mapping
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JsonIgnore
     @JoinTable(
             name = "customer_Locker",

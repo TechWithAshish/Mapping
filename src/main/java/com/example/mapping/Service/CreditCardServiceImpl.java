@@ -20,7 +20,7 @@ public class CreditCardServiceImpl implements CreditCardService{
 
     @Override
     public CreditCard createCreditCard(CardDto cardDto) {
-        Customer customerById = customerService.getCustomerById(cardDto.getCustomerId());
+        Customer customerById = customerService.getCustomerById(cardDto.getCustomerId(), false, false);
         CreditCard creditCard = new CreditCard();
         creditCard.setName(cardDto.getName());
         creditCard.setCardSubType(RandomCardType.randomSelectionOfCard());
